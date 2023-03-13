@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 public class FileReader {
     public Profile getDataFromFile(File file) {
-        try(java.io.FileReader fileReader=new java.io.FileReader("C:\\Users\\Sardor.me\\IdeaProjects\\stage1-module7-nio-task1\\src\\main\\resources\\Profile.txt");
+        try(java.io.FileReader fileReader=new java.io.FileReader(file);
             BufferedReader bufferedReader=new BufferedReader(fileReader)) {
             String nameLine = bufferedReader.readLine();
             String ageLine = bufferedReader.readLine();
@@ -15,11 +15,6 @@ public class FileReader {
             Integer age = Integer.parseInt(ageLine.split(": ")[1]);
             String email = emailLine.split(": ")[1];
             Long phone = Long.parseLong(phoneLine.split(": ")[1]);
-            /*String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
-            }*/
-            bufferedReader.close();
             return new Profile(name,age,email,phone);
         } catch (FileNotFoundException e) {
             System.out.println("404 not found");
